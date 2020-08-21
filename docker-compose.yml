@@ -1,0 +1,24 @@
+version: '2.2'
+
+services:
+
+  web-server:
+    build:
+      context: ./backend-dubbing-project
+      network: host
+    volumes:
+      - ./backend-dubbing-project:/usr/src/app
+    ports:
+      - 5000:80
+
+  web-client:
+    build:
+      context: ./front-dubbing-project
+      network: host
+    volumes:
+      - ./front-dubbing-project:/usr/src/app
+    ports:
+      - 3000:80
+    depends_on:
+      - web-server
+
